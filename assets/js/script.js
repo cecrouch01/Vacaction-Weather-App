@@ -23,12 +23,16 @@ function getCityWeather(location) {
                 return response.json();
             })
         }).then(function(weatherData) {
-            var cityName = ""
-            var temperature = ""
-            var windSpead = ""
-            var humidity = ""
+            var cityName = weatherData.city.name
+            var date = weatherData.list[0].dt_txt
+            var weatherIcon = weatherData.list[0].weather[0].icon
+            var temperature = weatherData.list[0].main.temp
+            var humidity = weatherData.list[0].main.humidity
+            var windSpead = weatherData.list[0].wind.speed
+            
+            
 
-            console.log(weatherData)
+            console.log(weatherData.list)
         })
         
 }

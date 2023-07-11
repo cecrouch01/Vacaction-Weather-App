@@ -1,3 +1,24 @@
+:root {
+    --silver: #C0C0C0;
+    --blue: #05668D;
+    
+}
+
+.container-fluid {
+    background-color: var(--blue);
+}
+.navbar-brand {
+    color: var(--silver);
+}
+.btn-outline-success {
+    color: var(--blue);
+    border-color: var(--blue);
+}
+.btn-outline-success:hover {
+    color: var(--silver);
+    border-color: var(--blue);
+    background-color: var(--blue);
+}
 .forecast-div {
     display: none
 }

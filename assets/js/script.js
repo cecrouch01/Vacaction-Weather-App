@@ -84,7 +84,6 @@ function getCityWeather(location) {
             localStorage.setItem(cityName, JSON.stringify(weatherForecast));
             var cityWeatherData = JSON.parse(localStorage.getItem(cityName));
             cityPlacement.textContent = cityName
-           console.log(cityWeatherData[0].icon)
             //This sets the date for each card
             for(var i = 0; i < datePlacement.length; i++) {
                 datePlacement[i].textContent = cityWeatherData[i].date
@@ -104,7 +103,11 @@ function getCityWeather(location) {
             //This sets the Huumidity for each card
             for(var i = 0; i < humidtyPlacement.length; i++) {
                 humidtyPlacement[i].textContent = "Humidity: " + cityWeatherData[i].humidity + "%"
-            }    
+            }
+            //This creates the button to be saved for 
+            //Crea 
+            var buttonElement = document.que
+
         })
         
 }

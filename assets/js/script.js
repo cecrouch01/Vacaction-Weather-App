@@ -143,7 +143,8 @@ function getCityWeather(location) {
                     humidtyPlacement[i].textContent = "Humidity: " + savedCityData[i].humidity + "%"
                 }
             })
-
+        }).catch(function(data) {
+            console.log("This is in catch " + data)
         })
         
 }

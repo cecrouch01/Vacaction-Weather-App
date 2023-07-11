@@ -1,5 +1,7 @@
 var searchBtn = document.querySelector(".btn");
 var searchBar = document.querySelector(".search");
+var forecastEl = document.querySelector(".forecast-div")
+
 
 //This function fetches the city data
 function getCityWeather(location) {
@@ -104,13 +106,43 @@ function getCityWeather(location) {
             for(var i = 0; i < humidtyPlacement.length; i++) {
                 humidtyPlacement[i].textContent = "Humidity: " + cityWeatherData[i].humidity + "%"
             }
-            //This creates the button to be saved for 
-            //Crea 
+            //This creates the button as save history
             var buttonElement = document.querySelector(".list-group");
             var cityButton = document.createElement("button");
+            var cityNameId = cityName.replaceAll(" ", "-")
             cityButton.textContent = cityName
             cityButton.className = "list-group-item"
+            cityButton.setAttribute("id", cityNameId)
             buttonElement.appendChild(cityButton)
+
+            //This creates a event listener that applies previous forecast data to be displayed
+            var previousCityBtn = document.querySelector("#" + cityNameId);
+            previousCityBtn.addEventListener("click", function(event) {
+                event.preventDefault();
+                var savedCityData = JSON.parse(localStorage.getItem(cityNameId.replaceAll("-", " ")))
+                //This resets the name of the city to match the reset data
+                cityPlacement.textContent = cityNameId.replaceAll("-", " ")
+                //This resets the date for each card
+                for(var i = 0; i < datePlacement.length; i++) {
+                    datePlacement[i].textContent = savedCityData[i].date
+                }
+                //This resets the icon for each card
+                for(var i = 0; i < iconPlacement.length; i++) {
+                    iconPlacement[i].setAttribute("src", "https://openweathermap.org/img/w/" + savedCityData[i].icon + ".png" )
+                }
+                //This resets the temp for each card
+                for(var i = 0; i < tempPlacement.length; i++) {
+                    tempPlacement[i].textContent = "Temperature: " + savedCityData[i].temp + "°F"
+                }
+                //This resets the Wind Speed for each card
+                for(var i = 0; i < windPlacement.length; i++) {
+                    windPlacement[i].textContent = "Wind Speed: " + savedCityData[i].windSpeed + " MPH"
+                }
+                //This resets the Huumidity for each card
+                for(var i = 0; i < humidtyPlacement.length; i++) {
+                    humidtyPlacement[i].textContent = "Humidity: " + savedCityData[i].humidity + "%"
+                }
+            })
 
         })
         
@@ -119,5 +151,6 @@ function getCityWeather(location) {
 searchBtn.addEventListener("click", function(event){
     event.preventDefault();
     getCityWeather(searchBar.value.replaceAll(" ", "_"));
+    forecastEl.setAttribute("style", "display: inline");
 })
 

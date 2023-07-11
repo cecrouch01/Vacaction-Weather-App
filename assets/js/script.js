@@ -106,7 +106,11 @@ function getCityWeather(location) {
             }
             //This creates the button to be saved for 
             //Crea 
-            var buttonElement = document.que
+            var buttonElement = document.querySelector(".list-group");
+            var cityButton = document.createElement("button");
+            cityButton.textContent = cityName
+            cityButton.className = "list-group-item"
+            buttonElement.appendChild(cityButton)
 
         })
         

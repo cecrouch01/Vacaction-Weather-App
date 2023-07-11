@@ -8,6 +8,14 @@ function getCityWeather(location) {
     var locationArray = location.split(",")
     var city = locationArray[0]
     var state = locationArray[1]
+    //These select the proper element to place each set of data
+    var cityPlacement = document.querySelector(".city-name");
+    var datePlacement = document.querySelectorAll(".card-title");
+    var iconPlacement = document.querySelectorAll(".icon");
+    var tempPlacement = document.querySelectorAll(".temp");
+    var windPlacement = document.querySelectorAll(".wind");
+    var humidtyPlacement = document.querySelectorAll(".humidity");
+
     //This grabs the geocoding information to find Latitude and Longitude
     var geocodingUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + state + "&appid=6debcc5035bdc6a46835d5821d6f4874"
     fetch(geocodingUrl)
@@ -24,6 +32,8 @@ function getCityWeather(location) {
                 return response.json();
             })
         }).then(function(weatherData) {
+            //This displays the information
+            forecastEl.setAttribute("style", "display: inline");
             //This gets the data for the current date and the 5 future dates. 
             var cityName = weatherData.city.name
             var weatherForecast = [
@@ -76,13 +86,7 @@ function getCityWeather(location) {
                     windSpeed: weatherData.list[39].wind.speed,
                 }
             ]
-            //These select the proper element to place each set of data
-            var cityPlacement = document.querySelector(".city-name");
-            var datePlacement = document.querySelectorAll(".card-title");
-            var iconPlacement = document.querySelectorAll(".icon");
-            var tempPlacement = document.querySelectorAll(".temp");
-            var windPlacement = document.querySelectorAll(".wind");
-            var humidtyPlacement = document.querySelectorAll(".humidity");
+            //This saves the data retrieved from API to local storage
             localStorage.setItem(cityName, JSON.stringify(weatherForecast));
             var cityWeatherData = JSON.parse(localStorage.getItem(cityName));
             cityPlacement.textContent = cityName
@@ -143,8 +147,8 @@ function getCityWeather(location) {
                     humidtyPlacement[i].textContent = "Humidity: " + savedCityData[i].humidity + "%"
                 }
             })
-        }).catch(function(data) {
-            console.log("This is in catch " + data)
+        }).catch(function() {
+            window.alert('Please format search to "City", "State"')
         })
         
 }
@@ -152,6 +156,6 @@ function getCityWeather(location) {
 searchBtn.addEventListener("click", function(event){
     event.preventDefault();
     getCityWeather(searchBar.value.replaceAll(" ", "_"));
-    forecastEl.setAttribute("style", "display: inline");
+    
 })
 

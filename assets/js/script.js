@@ -19,6 +19,7 @@ function getWeatherData(cityInfo) {
             return response.json();
         })
 }
+//This function grabs the correct weather data
 function renderData(weatherData) {
     //This displays the information
     forecastEl.setAttribute("style", "display: inline");
@@ -69,8 +70,8 @@ function renderData(weatherData) {
        renderForecastData(savedCityData)
     })
 }
-//This displays the data from a previously viewed city
-function renderPreviousData(cityData) {
+//This displays the weather data into correct card placement
+function renderForecastData(cityData) {
     for (var i = 0; i < datePlacement.length; i++) {
         datePlacement[i].textContent = cityData[i].date
     }
@@ -93,8 +94,7 @@ function renderPreviousData(cityData) {
 }
 //This Displays the error message
 function errorMessage() {
-    // window.alert('Please format search to "City", "State"')
-    document.getElementById("error").textContent = `Please format search to "City", "State"`
+    window.alert('Please format search to "City", "State"')
 }
 //This grabs the geocoding information to find Latitude and Longitude
 function getLatLon(city, state) {   

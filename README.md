@@ -22,7 +22,7 @@ To use this app type a city into the search bar and then hit enter. A 5 day weat
 
 ## Credits
 
-N/A
+Thanks to Joem Casusi for helping me learn how to organize my code and clean up some of the functions that I made.
 
 ## License
 

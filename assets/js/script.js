@@ -94,8 +94,7 @@ function renderForecastData(cityData) {
 }
 //This Displays the error message
 function errorMessage() {
-    // window.alert('Please format search to "City", "State"')
-    var myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
+    window.alert('Please format search to "City", "State"')
 }
 //This grabs the geocoding information to find Latitude and Longitude
 function getLatLon(city, state) {   

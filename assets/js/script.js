@@ -13,7 +13,7 @@ function getWeatherData(cityInfo) {
     var lat = cityInfo[0].lat;
     var lon = cityInfo[0].lon;
     //This gets the city data using the Latitude and Longitude
-    var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=a728373b0bd6ce58d588e4fe9fdacada&units=imperial"
+    var weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=a728373b0bd6ce58d588e4fe9fdacada&units=imperial"
     return fetch(weatherUrl)
         .then(function (response) {
             return response.json();

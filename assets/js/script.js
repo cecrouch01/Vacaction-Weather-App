@@ -94,11 +94,12 @@ function renderForecastData(cityData) {
 }
 //This Displays the error message
 function errorMessage() {
-    window.alert('Please format search to "City", "State"')
+    // window.alert('Please format search to "City", "State"')
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
 }
 //This grabs the geocoding information to find Latitude and Longitude
 function getLatLon(city, state) {   
-        var geocodingUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + state + "&appid=6debcc5035bdc6a46835d5821d6f4874"
+        var geocodingUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + state + "&appid=6debcc5035bdc6a46835d5821d6f4874"
         return fetch(geocodingUrl)
             .then(function (response) {
                 return response.json();
